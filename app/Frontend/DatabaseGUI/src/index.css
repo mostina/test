@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
+:root {
+  
+   --color-background: #FFF5E1;       /* sfondo principale */
+  --color-card: #F2E6D9;             /* card, sotto-menu */
+  --color-primary: #5C4033;          /* titoli, bordi principali */
+  --color-secondary: #7B2D26;        /* bottoni principali */
+  --color-accent: #FF7F50;           /* highlights / CTA */
+  --color-accent2: #8F9779;          /* dettagli secondari / hover verdure */
+  --color-text: #3B2F2F;             /* testo principale */
+  --color-text-secondary: #6E5A50;   /* testi secondari */
+
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-accent2);
+}
+
+ul{
+  font-family:'Lato', sans-serif;
+  color: var(--color-text);
+  margin: 20;
+  list-style: none;
+  place-items: center;
+  min-width: 100px;
+  min-height: auto;
+}
+
+li.menu{
+  font-size: 30px;
+  color: var(--color-primary);
+  list-style: none;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  margin: 3px;
+  padding:5px;
+  height: auto;
+  width: 700px;
+   flex-direction: column;
+} 
+ul.drink{
+  padding-left: 0;
+  font-size: 30px;
+  margin:0;
+  color: #b83535;   
+}
+
+ul.bevande {
+  padding-left: 0;
+  font-size: 20px;
+  margin:0;
+}
+li.bevande
+{
+  font-size: 20px;
+  color: var(--color-secondary);
+  list-style: none;
+  
+
+}
+
+label{
+  font-family:'Lato';
+  color: var(--color-text);
+  margin-right:10px;
+  margin-bottom: 10px;
+  display:inline-flex;
+  align-items: center;
+  justify-content: flex-end;;
+}
+
+div.Update {
+  margin-top: 10px;
+  padding: 10px 0px;
+  background-color: #fff3d6;
+  border: 2px solid var(--color-secondary);
+width: 700px;}
+
+div.topright{
+  position: fixed;       /* resta fisso */
+  top: 7px;              /* distanza dall'alto */
+  right: 7px;            /* distanza dal lato destro */
+  z-index: 1000;         /* sopra tutto */
+  background-color: var(--color-accent);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+font-family:"Lato";
+  justify-content: center;
+cursor: pointer;
+}
+
+div.topleft{
+            
+  position: fixed;       /* resta fisso */
+  top: 7px;              /* distanza dall'alto */
+  right: 100px;            /* distanza dal lato destro */
+  z-index: 1000;         /* sopra tutto */
+  background-color: var(--color-accent);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+font-family:"Lato";
+  justify-content: center;
+cursor: pointer;
+  
+}
+
+
+  div.status{
+  background-color: #e9f1e6;  
+  display: inline-block;  
+  padding: 5px 10px; 
+  margin: 10px 0;
+border-radius: 5px;
+color: var(--color-text);
+ 
+  
+  }
+
+div {
+
+  margin-Top: 5px;
+  font-Size: 18px;
+  
+    
+
+}
+
+
+h1,h2,h3
+{
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+     line-height: 1.1;
+     color: var(--color-primary);
+}
+h2
+{
+
+  font-size: 2.2em;
+}
+
+h1 {
+  
+  font-size: 4.2em;
+}
+
+h3{
+  font-size: 30px;
+}
+
+input{
+  background-color:#f4e1c7; /* colore di sfondo */
+  color:  var(--color-text);             /* colore del testo */
+  border: 2px dotted var(--color-secondary);            /* togli il bordo se vuoi */
+  padding: 3px 0.1px;        /* dimensioni del bottone */
+  cursor: pointer;           /* cambia il cursore al passaggio del mouse */
+  border-radius: 5px;        /* angoli arrotondati */
+  text-align: center;
+  display:inline-flex;
+ align-items: center;
+}
+
+input.age{
+ width: 60px;
+ margin-right:130px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px dotted var(--color-primary);
+  box-shadow: 0 0 5px #aaa;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 5px 5px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-secondary);
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  right: 60px;
+  margin-top: 5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width:auto;
+  height:auto;
+ 
+}
+.item-row {
+  display: flex;
+  justify-content: space-between; /* testo a sinistra, bottoni a destra */
+  align-items: center;
+    gap: 10px;      
+}
+
+.item-text {
+  flex: 1; /* prende tutto lo spazio disponibile */
+}
+
+.order-buttons {
+  display: flex;
+    flex-direction: row;
+gap: 5px;
+}
+
+div.order {
+  margin-left: 50px;
+}
+button.orderfromcart{
+  background-color:  var(--color-text-secondary);
+  width: 30px;
+  height: 30px;
+    font-size: 20px;
+margin-left: 3px; 
+    margin-right: 2px;
+}
+
+button.order{
+    background-color: var(--color-accent);
+    width: 30px;
+  height: 30px;
+    font-size: 20px;
+    
+    margin-right: 2px;
+
+
+}
+div.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+button.up {
+ 
+  background-color: var(--color-primary);
+  margin-right: 4px;
+}
+
+li.list {
+  cursor: pointer;
+  margin: 5px;
+  padding: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  color: var(--color-text);
+  background-color: var(--color-card);
+  width: 700px;
+  height: auto; /* si adatta al contenuto */
+ 
+  transition: background-color 0.25s, border-color 0.25s;
+}
+li.list:hover {
+  background-color: var(--color-accent2); /* leggero effetto hover verde salvia */
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+div.login {
+  width: 200px;
+  height: auto;
+  background-color:var(--color-card);
+  right:150px;
+  top: 60px;
+  padding: 4px 4px;
+  position: fixed;
+  border-color: var(--color-secondary);
+  border: 2px dotted ;
+}
+
+div.cartlist {
+  width: 400px;
+  height: auto;
+  background-color:var(--color-card);
+  right:20px;
+  top: 60px;
+  padding: 4px 4px;
+  position: fixed;
+  border-color: var(--color-secondary);
+  border: 2px dotted ;
+}
+
+button.cancel {
+ 
+  background-color: #b03060;
+
+}
+
+button:hover {
+  border-color: var(--color-accent2);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--color-text);
+    background-color:var(--color-background);
+  }
+  a:hover {
+    color: var(--color-accent2);
+  }
+  button {
+    background-color: var(--color-secondary);
+  }
+}

@@ -15,6 +15,7 @@ class Item (BaseModel):
    sellingprice: float
    units: int
    category: Category
+   amountInCart: int=0
    
    def checkavailability(self): 
       if self.units > 0: 

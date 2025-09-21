@@ -21,7 +21,7 @@ logger.info("Logger inizializzato correttamente")
 # --- CORS ---
 app.add_middleware( 
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # frontend Vite
+    allow_origins=["http://localhost:5173","http://localhost:8000", "http://127.0.0.1:5173", "http://127.0.0.1:8000"],  # frontend Vite
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -76,6 +76,7 @@ def insert_inventory(item: Item):
         "sellingprice": item.sellingprice,
         "units": item.units,
         "availability": item.checkavailability(),
+        "amountInCart": item.amountInCart,
     }
     result = inventory.insert_one(doc)
     return result
@@ -136,6 +137,29 @@ def get_person(person_id: str):
     ]
     return person
 
+@app.put("/inventory/item")
+def edit_units(data: dict = Body(...)):
+    obj_name = data.get("item_name")
+    if not obj_name:
+        raise HTTPException(status_code=400, detail="Missing item_name")
+
+    obj = inventory.find_one({"name": obj_name})
+    if not obj:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    # decrement units
+    new_units = obj.get("units", 0) - 1
+    availability = new_units > 0
+
+    inventory.update_one({"name": obj_name}, {"$set": {
+        "units": new_units,
+        "availability": availability}})
+
+    obj["units"] = new_units
+    obj["availability"] = availability
+    obj["_id"] = str(obj["_id"])  # <-- Convert ObjectId to string
+
+    return jsonable_encoder(obj)
 
 
 @app.post("/people")
@@ -211,3 +235,25 @@ def get_inventory(category: Category = Query(..., description="Filter by categor
         item["_id"] = str(item["_id"])
         items_data.append(item)
     return items_data
+
+
+@app.get ("/inventory/units")
+def get_units (item_id: str):
+
+    obj = inventory.find_one({"_id":ObjectId(item_id)})
+    return obj["units"]
+    
+    
+
+@app.put("/editinventory/{item_id}")
+def update_inventory(item_id: str, item: Item):
+    existing = inventory.find_one({"_id": ObjectId(item_id)})
+    if not existing:
+       raise HTTPException(status_code=404, detail="Item not found")
+    updated_doc = jsonable_encoder(item)
+    updated_doc["availability"] = updated_doc.get("units", 0) > 0
+    inventory.update_one({"_id": ObjectId(item_id)}, {"$set": updated_doc})
+    updated_doc["_id"] = item_id
+    return updated_doc
+
+

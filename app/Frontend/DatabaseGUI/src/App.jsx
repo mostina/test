@@ -289,6 +289,17 @@ setInventory(prev => {
 };
 
 const deleteItemFromCart = (item) => {
+
+  for (const d of cart){
+    if(d===item){
+      if(d.amountInCart>1)
+      { const resp = fetch(`http://127.0.0.1:8000/inventory/item/addback`, {
+  method: "PUT",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ item_name: item.name })})
+  return;
+    }
+  }}
   fetch("http://127.0.0.1:8000/people/cart", {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
@@ -301,6 +312,10 @@ const deleteItemFromCart = (item) => {
       localStorage.setItem("Cart", JSON.stringify(Array.isArray(updatedCart) ? updatedCart : []));
 
     })
+    const resp = fetch(`http://127.0.0.1:8000/inventory/item/addback`, {
+  method: "PUT",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ item_name: item.name })})
     .catch(err => console.error("Errore nello svuotare il carrello:", err));
 }
 

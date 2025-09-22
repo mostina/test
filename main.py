@@ -162,6 +162,31 @@ def edit_units(data: dict = Body(...)):
     return jsonable_encoder(obj)
 
 
+@app.put("/inventory/item/addback")
+def edit_units(data: dict = Body(...)):
+    obj_name = data.get("item_name")
+    if not obj_name:
+        raise HTTPException(status_code=400, detail="Missing item_name")
+
+    obj = inventory.find_one({"name": obj_name})
+    if not obj:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    # decrement units
+    new_units = obj.get("units", 0) + 1
+    availability = new_units > 0
+
+    inventory.update_one({"name": obj_name}, {"$set": {
+        "units": new_units,
+        "availability": availability}})
+
+    obj["units"] = new_units
+    obj["availability"] = availability
+    obj["_id"] = str(obj["_id"])  # <-- Convert ObjectId to string
+
+    return jsonable_encoder(obj)
+
+
 @app.post("/people")
 def add_person(person: Human):
     result = insert_person(person)
